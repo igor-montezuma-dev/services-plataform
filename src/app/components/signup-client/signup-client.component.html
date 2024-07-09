@@ -1,0 +1,90 @@
+<div class="bg">
+  <div class="parent">
+    <div class="child">
+      <div nz-col>
+        <h1>Registrar cliente</h1>
+      </div>
+
+      <form nz-form [formGroup]="signUpForm" (ngSubmit)="submit()">
+        <nz-form-item>
+          <nz-form-control nzHasFeedback nzErrorTip="Insira um valor válido!">
+            <input
+              id="name"
+              nz-input
+              placeholder="Informe o nome"
+              type="text"
+              formControlName="name"
+            />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control nzHasFeedback nzErrorTip="Insira um valor válido!">
+            <input
+              id="lastName"
+              nz-input
+              placeholder="Informe o sobrenome"
+              type="text"
+              formControlName="lastName"
+            />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control nzHasFeedback nzErrorTip="Insira um email válido!">
+            <input
+              id="email"
+              nz-input
+              placeholder="E-mail"
+              type="text"
+              formControlName="email"
+            />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control nzHasFeedback nzErrorTip="Insira uma senha válida!">
+            <input
+              id="password"
+              nz-input
+              placeholder="Senha"
+              type="password"
+              formControlName="password"
+            />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control nzHasFeedback nzErrorTip="Insira uma senha válida!">
+            <input
+              id="password"
+              nz-input
+              placeholder="Confirmar senha"
+              type="password"
+              formControlName="confirmPassword"
+            />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control nzHasFeedback nzErrorTip="Insira número válido!">
+            <input
+              id="phone"
+              nz-input
+              placeholder="Telefone"
+              type="tel"
+              formControlName="phone"
+            />
+          </nz-form-control>
+        </nz-form-item>
+
+        <button
+          nz-button
+          class="login-form-button login-form-margin"
+          [nzType]="'primary'"
+          type="submit"
+        >
+          Registrar
+        </button>
+        <a routerLink="/login" class="login-form-margin"
+          >Já possui uma conta? Faça login!</a
+        >
+      </form>
+    </div>
+  </div>
+</div>
