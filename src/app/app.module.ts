@@ -12,13 +12,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoNgZorroAntdModule } from './DemoNgZorroAntdModule';
 import { SignupClientComponent } from './components/signup-client/signup-client.component';
+import { SignupCompanyComponent } from './components/signup-company/signup-company.component';
 
 registerLocaleData(pt);
 
 @NgModule({
   declarations: [
     AppComponent,
-    SignupClientComponent
+    SignupClientComponent,
+    SignupCompanyComponent
   ],
   imports: [
     BrowserModule,
