@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -21,17 +21,37 @@ export class SignupClientComponent implements OnInit {
 
   ngOnInit(): void {
     this.signUpForm = this.fb.group({
-      name: ['', { Validators: [Validators.required] }],
-      lastName: ['', { Validators: [Validators.required] }],
-      email: ['', { Validators: [Validators.required, Validators.email] }],
-      password: ['', { Validators: [Validators.required] }],
-      confirmPassword: ['', { Validators: [Validators.required] }],
+      name: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.required]],
       phone: [''],
-    });
+    }, { validators: this.passwordValidator.bind(this) });
+  }
+
+  public passwordValidator(formGroup: FormGroup): ValidationErrors | null {
+    const password = formGroup.get('password');
+    const confirmPassword = formGroup.get('confirmPassword');
+    if (password && confirmPassword && password.value !== confirmPassword.value) {
+      confirmPassword.setErrors({ notEqual: true });
+      return { notEqual: true };
+    } else {
+      if (confirmPassword) {
+        confirmPassword.setErrors(null);
+      }
+      return null;
+    }
   }
 
   public submit(){
-    this.authService.registerClient(this.signUpForm.value).subscribe({
+    const emailControl = this.signUpForm.get('email');
+    if (emailControl) {
+      console.log(emailControl.errors);
+    }
+    const registerData = this.signUpForm.value;
+    console.log(registerData);
+    this.authService.registerClient(registerData).subscribe({
       next: (response) => {
         this.notification.success('Sucesso', 'Cliente registrado com sucesso!');
         this.router.navigate(['/login']);

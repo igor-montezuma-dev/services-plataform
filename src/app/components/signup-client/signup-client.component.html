@@ -7,7 +7,7 @@
 
       <form nz-form [formGroup]="signUpForm" (ngSubmit)="submit()">
         <nz-form-item>
-          <nz-form-control nzHasFeedback nzErrorTip="Insira um valor válido!">
+          <nz-form-control nzHasFeedback nzErrorTip="Informe seu nome!">
             <input
               id="name"
               nz-input
@@ -18,7 +18,7 @@
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>
-          <nz-form-control nzHasFeedback nzErrorTip="Insira um valor válido!">
+          <nz-form-control nzHasFeedback nzErrorTip="Informe seu sobrenome!">
             <input
               id="lastName"
               nz-input
@@ -34,7 +34,7 @@
               id="email"
               nz-input
               placeholder="E-mail"
-              type="text"
+              type="email"
               formControlName="email"
             />
           </nz-form-control>
@@ -51,9 +51,12 @@
           </nz-form-control>
         </nz-form-item>
         <nz-form-item>
-          <nz-form-control nzHasFeedback nzErrorTip="Insira uma senha válida!">
+          <nz-form-control
+            nzHasFeedback
+            [nzErrorTip]="signUpForm.get('confirmPassword')?.errors?.['notEqual'] ? 'As senhas não coincidem!' : 'Insira uma senha válida!'"
+          >
             <input
-              id="password"
+              id="confirmPassword"
               nz-input
               placeholder="Confirmar senha"
               type="password"
@@ -78,6 +81,7 @@
           class="login-form-button login-form-margin"
           [nzType]="'primary'"
           type="submit"
+          [disabled]="!signUpForm.valid"
         >
           Registrar
         </button>
