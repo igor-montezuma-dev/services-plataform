@@ -1,3 +1,51 @@
-<p>
-  login works!
-</p>
+<div class="bg">
+  <div class="parent">
+    <div class="child">
+      <div nz-row class="imgDiv">
+        <div nz-col nzSpan="24">
+          <h1>Login</h1>
+        </div>
+
+        <form nz-form [formGroup]="signInForm" (ngSubmit)="submitForm()">
+          <nz-form-item>
+            <nz-form-control nzHasFeedback nzErrorTip="Insira um email válido!">
+              <input
+                id="email"
+                nz-input
+                placeholder="E-mail"
+                type="email"
+                formControlName="email"
+              />
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control
+              nzHasFeedback
+              nzErrorTip="Insira uma senha válida!"
+            >
+              <input
+                id="password"
+                nz-input
+                placeholder="Senha"
+                type="password"
+                formControlName="password"
+              />
+            </nz-form-control>
+          </nz-form-item>
+          <button
+            nz-button
+            class="login-form-button login-form-margin"
+            [nzType]="'primary'"
+            type="submit"
+            [disabled]="!signInForm.valid"
+          >
+            Login
+          </button>
+          <a routerLink="/login" class="login-form-margin"
+            >Não possui conta? Registre-se!</a
+          >
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
